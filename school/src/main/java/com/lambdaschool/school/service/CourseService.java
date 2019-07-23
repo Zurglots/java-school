@@ -10,6 +10,8 @@ public interface CourseService
 {
     ArrayList<Course> findAll(Pageable pageable);
 
+    ArrayList<Course> findAll();
+
     ArrayList<CountStudentsInCourses> getCountStudentsInCourse();
 
     void delete(long id);

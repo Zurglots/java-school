@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,6 +37,13 @@ public class StudentController
         logger.trace(request.getRequestURI() + request.getMethod() + " accessed");
         List<Student> myStudents = studentService.findAll(pageable);
         return new ResponseEntity<>(myStudents, HttpStatus.OK);
+    }
+
+    @GetMapping(value ="/allStudents", produces = {"application/json"})
+    public ResponseEntity<?> noSortListAllStudents()
+    {
+        List<Student> myCourses = studentService.findAll();
+        return new ResponseEntity<>(myCourses, HttpStatus.OK);
     }
 
     @GetMapping(value = "/Student/{StudentId}",

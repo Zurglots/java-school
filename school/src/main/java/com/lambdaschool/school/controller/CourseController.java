@@ -35,6 +35,13 @@ public class CourseController
         return new ResponseEntity<>(myCourses, HttpStatus.OK);
     }
 
+    @GetMapping(value ="/allcourses", produces = {"application/json"})
+    public ResponseEntity<?> noSortListAllCourses()
+    {
+        ArrayList<Course> myCourses = courseService.findAll();
+        return new ResponseEntity<>(myCourses, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/studcount", produces = {"application/json"})
     public ResponseEntity<?> getCountStudentsInCourses(HttpServletRequest request)
     {

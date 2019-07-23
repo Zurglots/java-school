@@ -28,6 +28,14 @@ public class StudentServiceImpl implements StudentService
     }
 
     @Override
+    public List<Student> findAll()
+    {
+        List<Student> list = new ArrayList<>();
+        studrepos.findAll().iterator().forEachRemaining(list::add);
+        return list;
+    }
+
+    @Override
     public Student findStudentById(long id) throws ResourceNotFoundException
     {
         return studrepos.findById(id)

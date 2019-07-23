@@ -27,6 +27,14 @@ public class CourseServiceImpl implements CourseService
     }
 
     @Override
+    public ArrayList<Course> findAll()
+    {
+        ArrayList<Course> list = new ArrayList<>();
+        courserepos.findAll().iterator().forEachRemaining(list::add);
+        return list;
+    }
+
+    @Override
     public ArrayList<CountStudentsInCourses> getCountStudentsInCourse()
     {
 //        ArrayList<CountStudentsInCourses> list = new ArrayList<>();
