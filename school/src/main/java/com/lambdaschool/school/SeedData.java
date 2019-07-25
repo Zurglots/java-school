@@ -1,16 +1,18 @@
 package com.lambdaschool.school;
 
 
-import com.lambdaschool.school.model.Course;
-import com.lambdaschool.school.model.Instructor;
-import com.lambdaschool.school.model.Student;
+import com.lambdaschool.school.model.*;
 import com.lambdaschool.school.repository.InstructorRepository;
+import com.lambdaschool.school.repository.RoleRepository;
+import com.lambdaschool.school.repository.UserRepository;
 import com.lambdaschool.school.service.CourseService;
 import com.lambdaschool.school.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 
 @Transactional
 @Component
@@ -25,9 +27,43 @@ public class SeedData implements CommandLineRunner
     @Autowired
     private InstructorRepository instructrepos;
 
+    @Autowired
+    private RoleRepository rolerepos;
+
+    @Autowired
+    private UserRepository userrepos;
+
     @Override
     public void run(String[] args) throws Exception
     {
+
+        Role r1 = new Role("admin");
+        Role r2 = new Role("user");
+
+        rolerepos.save(r1);
+        rolerepos.save(r2);
+
+        ArrayList<UserRoles> users = new ArrayList<>();
+        users.add(new UserRoles(new User(), r2));
+        User u1 = new User("barnbarn", "ILuvM4th!", users);
+        userrepos.save(u1);
+
+        ArrayList<UserRoles> admins = new ArrayList<>();
+        admins.add(new UserRoles(new User(), r1));
+        admins.add(new UserRoles(new User(), r2));
+        User u2 = new User("admin", "password", admins);
+        userrepos.save(u2);
+
+        users = new ArrayList<>();
+        users.add(new UserRoles(new User(), r2));
+        User u3 = new User("Bob", "password", users);
+        userrepos.save(u3);
+
+        users = new ArrayList<>();
+        users.add(new UserRoles(new User(), r2));
+        User u4 = new User("Jane", "password", users);
+        userrepos.save(u4);
+
         Instructor i1 = new Instructor("Sally");
 
         Instructor i2 = new Instructor("Lucy");
