@@ -14,7 +14,7 @@ public interface CourseService
 
     Course findCourseById(long id);
 
-    Course save(Course course);
+    Course save (Course course);
 
     ArrayList<CountStudentsInCourses> getCountStudentsInCourse();
 

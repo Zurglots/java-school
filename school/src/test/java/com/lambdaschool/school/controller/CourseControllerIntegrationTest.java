@@ -52,8 +52,9 @@ public class CourseControllerIntegrationTest
     public void givenPostACourse() throws Exception
     {
         Instructor i1 = instructorrepo.findById(2L).orElseThrow(() -> new EntityNotFoundException(Long.toString(2L)));
-        Course c1 = new Course("API Testing", i1);
-        c1.setCourseid(60);
+//        c1.setCourseid(60);
+
+        Course c1 = new Course("API Testing");
 
         ObjectMapper mapper = new ObjectMapper();
         String stringC1 = mapper.writeValueAsString(c1);
