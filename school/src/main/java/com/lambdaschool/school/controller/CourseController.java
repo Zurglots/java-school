@@ -10,11 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 @RestController
@@ -61,6 +66,23 @@ public class CourseController
     {
         logger.trace(request.getRequestURI() + request.getMethod() + " accessed");
         return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/course",
+            consumes = {"application/json"},
+            produces = {"application/json"})
+    public ResponseEntity<?> addNewCourse(HttpServletRequest request, @Valid
+    @RequestBody Course newCourse) throws URISyntaxException
+    {
+        logger.trace(request.getRequestURI() + request.getMethod() + " updated");
+        newCourse = courseService.save(newCourse);
+
+        // set the location header for the newly created resource
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newStudentURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseid}").buildAndExpand(newCourse.getCourseid()).toUri();
+        responseHeaders.setLocation(newStudentURI);
+
+        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/courses/{courseid}")

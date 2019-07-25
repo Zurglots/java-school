@@ -80,5 +80,5 @@ class CourseControllerTest
 
         assertEquals("Rest API Returns List", er, tr);
     }
-    
+
 }
