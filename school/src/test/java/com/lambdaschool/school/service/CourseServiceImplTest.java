@@ -4,8 +4,10 @@ package com.lambdaschool.school.service;
 import com.lambdaschool.school.SchoolApplication;
 import com.lambdaschool.school.exceptions.ResourceNotFoundException;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class) // declares we want to use with spring jpa
 @SpringBootTest(classes = SchoolApplication.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CourseServiceImplTest
 {
     @Autowired CourseService courseService;
@@ -33,26 +36,26 @@ public class CourseServiceImplTest
     // Everything in spring is referred to as mocking.
 
     @Test
-    public void findCourseById()
+    public void AfindCourseById()
     {
         assertEquals ("Data Science", courseService.findCourseById(1).getCoursename());
     }
 
     @Test
-    public void findAll()
+    public void BfindAll()
     {
         assertEquals(12, courseService.findAll().size());
     }
 
     @Test
-    public void deleteFound()
+    public void CdeleteFound()
     {
         courseService.delete(1);
         assertEquals(11, courseService.findAll().size());
     }
 
     @Test(expected = ResourceNotFoundException.class)
-    public void deleteNotFound()
+    public void DdeleteNotFound()
     {
         courseService.delete(100);
         assertEquals(11, courseService.findAll().size());
