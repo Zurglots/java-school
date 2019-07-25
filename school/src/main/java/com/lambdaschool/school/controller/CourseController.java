@@ -1,10 +1,9 @@
 package com.lambdaschool.school.controller;
 
 import com.lambdaschool.school.model.Course;
+import com.lambdaschool.school.model.ErrorDetail;
 import com.lambdaschool.school.service.CourseService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +67,12 @@ public class CourseController
         return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
     }
 
+
+    @ApiOperation(value = "Creates a new Course", notes = "Newly created student ID will be sent in the location header", response = void.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Student Created", response = void.class),
+            @ApiResponse(code = 404, message = "Error creating Student", response = ErrorDetail.class)
+    })
     @PostMapping(value = "/course/add",
             consumes = {"application/json"},
             produces = {"application/json"})
