@@ -68,7 +68,7 @@ public class CourseController
         return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/course",
+    @PostMapping(value = "/course/add",
             consumes = {"application/json"},
             produces = {"application/json"})
     public ResponseEntity<?> addNewCourse(HttpServletRequest request, @Valid
@@ -79,8 +79,8 @@ public class CourseController
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
-        URI newStudentURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseid}").buildAndExpand(newCourse.getCourseid()).toUri();
-        responseHeaders.setLocation(newStudentURI);
+        URI newCourseURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseid}").buildAndExpand(newCourse.getCourseid()).toUri();
+        responseHeaders.setLocation(newCourseURI);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
