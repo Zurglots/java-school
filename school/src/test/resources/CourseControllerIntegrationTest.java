@@ -1,5 +1,3 @@
-package com.lambdaschool.school.controller;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lambdaschool.school.model.Course;
 import com.lambdaschool.school.model.Instructor;
@@ -30,35 +28,35 @@ public class CourseControllerIntegrationTest
     @Autowired
     private InstructorRepository instructorrepo;
 
-    @Before
-    public void initaliseRestAssuredMockMcvWebApplicationContext()
-    {
-        RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
-    }
-
-    // Everything up to here is boilerplate integration testing structure.
-
-    // GET /courses/course response time
-
-    @Test
-    public void whenMeasuredResponseTime()
-    {
-        given().when().get("/courses/course").then().time(lessThan(5000L));
-    }
-
-    // POST /courses/course/add
-
-    @Test
-    public void givenPostACourse() throws Exception
-    {
-        Instructor i1 = instructorrepo.findById(2L).orElseThrow(() -> new EntityNotFoundException(Long.toString(2L)));
-//        c1.setCourseid(60);
-
-        Course c1 = new Course("API Testing");
-
-        ObjectMapper mapper = new ObjectMapper();
-        String stringC1 = mapper.writeValueAsString(c1);
-
-        given().contentType("application/json").body(stringC1).when().post("/courses/course/add").then().statusCode(201);
-    }
+//    @Before
+//    public void initaliseRestAssuredMockMcvWebApplicationContext()
+//    {
+//        RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
+//    }
+//
+//    // Everything up to here is boilerplate integration testing structure.
+//
+//    // GET /courses/course response time
+//
+//    @Test
+//    public void whenMeasuredResponseTime()
+//    {
+//        given().when().get("/courses/course").then().time(lessThan(5000L));
+//    }
+//
+//    // POST /courses/course/add
+//
+//    @Test
+//    public void givenPostACourse() throws Exception
+//    {
+//        Instructor i1 = instructorrepo.findById(2L).orElseThrow(() -> new EntityNotFoundException(Long.toString(2L)));
+////        c1.setCourseid(60);
+//
+//        Course c1 = new Course("API Testing");
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        String stringC1 = mapper.writeValueAsString(c1);
+//
+//        given().contentType("application/json").body(stringC1).when().post("/courses/course/add").then().statusCode(201);
+//    }
 }

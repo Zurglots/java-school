@@ -1,6 +1,3 @@
-package com.lambdaschool.school.service;
-
-
 import com.lambdaschool.school.SchoolApplication;
 import com.lambdaschool.school.exceptions.ResourceNotFoundException;
 import org.junit.Before;
@@ -35,30 +32,30 @@ public class CourseServiceImplTest
     // Stubbing - don't use the real version of the method, force it to return something different.
     // Everything in spring is referred to as mocking.
 
-    @Test
-    public void AfindCourseById()
-    {
-        assertEquals ("Data Science", courseService.findCourseById(1).getCoursename());
-    }
-
-    @Test
-    public void BfindAll()
-    {
-        assertEquals(12, courseService.findAll().size());
-    }
-
-    @Test
-    public void CdeleteFound()
-    {
-        courseService.delete(1);
-        assertEquals(11, courseService.findAll().size());
-    }
-
-    @Test(expected = ResourceNotFoundException.class)
-    public void DdeleteNotFound()
-    {
-        courseService.delete(100);
-        assertEquals(11, courseService.findAll().size());
-    }
+//    @Test
+//    public void AfindCourseById()
+//    {
+//        assertEquals ("Data Science", courseService.findCourseById(1).getCoursename());
+//    }
+//
+//    @Test
+//    public void BfindAll()
+//    {
+//        assertEquals(12, courseService.findAll().size());
+//    }
+//
+//    @Test
+//    public void CdeleteFound()
+//    {
+//        courseService.delete(1);
+//        assertEquals(11, courseService.findAll().size());
+//    }
+//
+//    @Test(expected = ResourceNotFoundException.class)
+//    public void DdeleteNotFound()
+//    {
+//        courseService.delete(100);
+//        assertEquals(11, courseService.findAll().size());
+//    }
 
 }

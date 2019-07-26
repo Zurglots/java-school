@@ -1,6 +1,3 @@
-package com.lambdaschool.school;
-
-
 import com.lambdaschool.school.model.Course;
 import com.lambdaschool.school.model.Instructor;
 import com.lambdaschool.school.model.Student;
@@ -12,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+//@Transactional
 @Component
 public class SeedData implements CommandLineRunner
 {

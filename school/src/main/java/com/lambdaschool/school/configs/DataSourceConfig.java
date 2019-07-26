@@ -24,6 +24,7 @@ public class DataSourceConfig
         String myDBUser = "";
         String myDBPassword = "";
         String dbValue = env.getProperty("local.run.db");
+
         if (dbValue.equalsIgnoreCase("POSTGRESQL"))
         {
             myUrlString = "jdbc:postgresql://" + System.getenv("MYDBHOST") + ":5432/" + System.getenv("MYDBNAME");
